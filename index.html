@@ -45,6 +45,17 @@
         color: var(--primary-color);
       }
 
+      .card-content {
+        font-size: 2rem;
+        font-weight: 600;
+      }
+
+      .loading {
+        -webkit-animation:spin 1.5s linear infinite;
+        -moz-animation:spin 1.5s linear infinite;
+        animation:spin 1.5s linear infinite;
+      }
+
       .card > button {
         position: absolute;
         left: 0;
@@ -59,12 +70,8 @@
         cursor: pointer;
       }
 
-      #advice {
-        font-size: 2rem;
-        font-weight: 600;
-      }
-
-      .divider-desktop, .divider-mobile {
+      .divider-desktop,
+      .divider-mobile {
         margin-top: 2rem;
       }
 
@@ -86,6 +93,25 @@
         color: hsl(228, 45%, 44%);
       }
 
+      @-moz-keyframes spin {
+        100% {
+          -moz-transform: rotate(360deg);
+        }
+      }
+
+      @-webkit-keyframes spin {
+        100% {
+          -webkit-transform: rotate(360deg);
+        }
+      }
+
+      @keyframes spin {
+        100% {
+          -webkit-transform: rotate(360deg);
+          transform: rotate(360deg);
+        }
+      }
+
       @media screen and (min-width: 576px) {
         .card {
           max-width: 500px;
@@ -103,11 +129,14 @@
   </head>
   <body>
     <div class="card">
-      <p class="card-header">ADVICE #117</p>
-      <span id="advice">"It is easy to sit up and take notice, what's difficult is getting up and taking action."</span>
+      <p class="card-header">ADVICE #<span id="advice-id">117</span></p>
+      <article class="card-content">
+        "<span id="advice">It is easy to sit up and take notice, what's difficult is getting up and taking action.</span
+        >"
+      </article>
       <img class="divider-desktop" src="/images/pattern-divider-desktop.svg" />
       <img class="divider-mobile" src="/images/pattern-divider-mobile.svg" />
-      <button>
+      <button id="change-advice">
         <img src="/images/icon-dice.svg" />
       </button>
     </div>
@@ -116,5 +145,21 @@
       Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. Coded by
       <a href="https://stfn.tech">Stefano Christian Wiryana</a>.
     </div>
+
+    <script>
+      document.getElementById('change-advice').onclick = async (event) => {
+        event.target.classList.add('loading');
+        const data = await fetchData('https://api.adviceslip.com/advice');
+        const slip = data.slip;
+        document.getElementById('advice-id').textContent = slip.id;
+        document.getElementById('advice').textContent = slip.advice;
+        event.target.classList.remove('loading');
+      };
+
+      const fetchData = async (url) => {
+        const response = await fetch(url);
+        return response.json();
+      };
+    </script>
   </body>
 </html>
