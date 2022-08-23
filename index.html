@@ -3,26 +3,33 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href=".images/favicon-32x32.png" />
     <title>Frontend Mentor | Advice generator app</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;800&display=swap" rel="stylesheet">
+
     <style>
       :root {
-        --bg-color: #202632;
-        --card-color: #313a49;
-        --primary-color: #50d298;
-        --text-color: #c5d0dd;
+        --bg-color: hsl(218, 23%, 16%); /* Dark Blue */
+        --card-color: hsl(217, 19%, 24%); /* Dark Grayish Blue */
+        --primary-color: hsl(150, 100%, 66%); /* Neon Green */
+        --text-color: hsl(193, 38%, 86%); /* Light Cyan */
       }
 
       * {
+        margin: 0;
+        padding: 0;
         box-sizing: border-box;
       }
 
       body {
         height: 100vh;
         overflow-y: hidden;
-        padding: 0 2rem;
+        padding: 0 32px;
         background-color: var(--bg-color);
-        font-family: sans-serif;
+        font-family: 'Manrope', sans-serif;
         color: var(--text-color);
       }
 
@@ -31,7 +38,8 @@
         top: 50%;
         transform: translateY(-50%);
         margin: auto;
-        padding: 1rem 2rem 4rem;
+        padding: 48px 32px 64px;
+        max-width: 520px;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -42,18 +50,22 @@
       }
 
       .card-header {
+        letter-spacing: 4.5px;
+        font-size: 12px;
+        font-weight: 800;
         color: var(--primary-color);
       }
 
       .card-content {
-        font-size: 2rem;
-        font-weight: 600;
+        margin-top: 32px;
+        font-size: 28px;
+        font-weight: 800;
       }
 
       .loading {
-        -webkit-animation:spin 1.5s linear infinite;
-        -moz-animation:spin 1.5s linear infinite;
-        animation:spin 1.5s linear infinite;
+        -webkit-animation: spin 1.5s linear infinite;
+        -moz-animation: spin 1.5s linear infinite;
+        animation: spin 1.5s linear infinite;
       }
 
       .card > button {
@@ -68,19 +80,24 @@
         border: none;
         border-radius: 50%;
         cursor: pointer;
+        transition: all 0.3s ease-in-out;
+      }
+
+      .card > button:hover {
+        box-shadow: 0 0 25px var(--primary-color);
       }
 
       .divider-desktop,
       .divider-mobile {
-        margin-top: 2rem;
+        margin-top: 32px;
       }
 
       .divider-desktop {
-        display: none;
+        display: block;
       }
 
       .divider-mobile {
-        display: block;
+        display: none;
       }
 
       .attribution {
@@ -112,17 +129,13 @@
         }
       }
 
-      @media screen and (min-width: 576px) {
-        .card {
-          max-width: 500px;
-        }
-
+      @media screen and (max-width: 1440px) {
         .divider-desktop {
-          display: block;
+          display: none;
         }
 
         .divider-mobile {
-          display: none;
+          display: block;
         }
       }
     </style>
@@ -134,10 +147,10 @@
         "<span id="advice">It is easy to sit up and take notice, what's difficult is getting up and taking action.</span
         >"
       </article>
-      <img class="divider-desktop" src="/images/pattern-divider-desktop.svg" />
-      <img class="divider-mobile" src="/images/pattern-divider-mobile.svg" />
+      <img class="divider-desktop" src="images/pattern-divider-desktop.svg" />
+      <img class="divider-mobile" src="images/pattern-divider-mobile.svg" />
       <button id="change-advice">
-        <img src="/images/icon-dice.svg" />
+        <img src="images/icon-dice.svg" />
       </button>
     </div>
 
