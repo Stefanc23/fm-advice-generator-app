@@ -83,5 +83,5 @@ I also learned how to implement a glow effect on a button's hover state using cs
 
 ## Author
 
-- Website - [Stefano Christian Wiryana](https://stfn.tech)
+- Website - [stfn.vercel.app](https://stfn.vercel.app)
 - Frontend Mentor - [@Stefanc23](https://www.frontendmentor.io/profile/Stefanc23)
